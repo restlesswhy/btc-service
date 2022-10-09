@@ -1,0 +1,123 @@
+basePath: /api/v1/
+definitions:
+  models.Currency:
+    properties:
+      code:
+        type: string
+      en_name:
+        type: string
+      ru_name:
+        type: string
+      symbol:
+        type: string
+    type: object
+  models.QuotaDetailResponce:
+    properties:
+      buy:
+        type: number
+      sell:
+        type: number
+      symbol:
+        type: string
+      time:
+        type: string
+    type: object
+host: localhost:4000
+info:
+  contact:
+    name: German Generalov
+    url: http://github.com/restlesswhy
+  description: BTC service with Hyperledger Fabric implementation.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: BTC-sercive swagger API
+  version: "2.0"
+paths:
+  /currencies/price:
+    get:
+      consumes:
+      - application/json
+      description: send currency symbol, get info
+      parameters:
+      - description: Currency identificator
+        in: query
+        name: symbol
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.QuotaDetailResponce'
+            type: array
+      summary: Get all quotas of currencies
+      tags:
+      - Currency
+  /currency:
+    get:
+      consumes:
+      - application/json
+      description: send currency symbol, get info
+      parameters:
+      - description: Currency identificator
+        in: query
+        name: symbol
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Currency'
+      summary: Get currency info
+      tags:
+      - Currency
+  /currency/price:
+    get:
+      consumes:
+      - application/json
+      description: send currency symbol, get currency quota
+      parameters:
+      - description: Currency identificator
+        in: query
+        name: symbol
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.QuotaDetailResponce'
+      summary: Get currency quota
+      tags:
+      - Currency
+  /currency/price/history:
+    get:
+      consumes:
+      - application/json
+      description: send currency symbol, get info
+      parameters:
+      - description: Currency identificator
+        in: query
+        name: symbol
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.QuotaDetailResponce'
+            type: array
+      summary: Get currency quota history
+      tags:
+      - Currency
+schemes:
+- http
+swagger: "2.0"

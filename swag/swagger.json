@@ -1,0 +1,189 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "BTC service with Hyperledger Fabric implementation.",
+        "title": "BTC-sercive swagger API",
+        "contact": {
+            "name": "German Generalov",
+            "url": "http://github.com/restlesswhy"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "2.0"
+    },
+    "host": "localhost:4000",
+    "basePath": "/api/v1/",
+    "paths": {
+        "/currencies/price": {
+            "get": {
+                "description": "send currency symbol, get info",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Currency"
+                ],
+                "summary": "Get all quotas of currencies",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Currency identificator",
+                        "name": "symbol",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.QuotaDetailResponce"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/currency": {
+            "get": {
+                "description": "send currency symbol, get info",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Currency"
+                ],
+                "summary": "Get currency info",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Currency identificator",
+                        "name": "symbol",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Currency"
+                        }
+                    }
+                }
+            }
+        },
+        "/currency/price": {
+            "get": {
+                "description": "send currency symbol, get currency quota",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Currency"
+                ],
+                "summary": "Get currency quota",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Currency identificator",
+                        "name": "symbol",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.QuotaDetailResponce"
+                        }
+                    }
+                }
+            }
+        },
+        "/currency/price/history": {
+            "get": {
+                "description": "send currency symbol, get info",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Currency"
+                ],
+                "summary": "Get currency quota history",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Currency identificator",
+                        "name": "symbol",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.QuotaDetailResponce"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Currency": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "en_name": {
+                    "type": "string"
+                },
+                "ru_name": {
+                    "type": "string"
+                },
+                "symbol": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.QuotaDetailResponce": {
+            "type": "object",
+            "properties": {
+                "buy": {
+                    "type": "number"
+                },
+                "sell": {
+                    "type": "number"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

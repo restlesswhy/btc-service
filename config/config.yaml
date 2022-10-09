@@ -1,0 +1,18 @@
+serviceName: btc-service
+http:
+  port: :8000
+logger:
+  level: debug
+  devMode: false
+  encoder: console
+synch:
+  interval: 60000
+ledger:
+  mspID: Org1MSP
+  certPath: fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/cert.pem
+  keyPath: fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/
+  tlsCertPath: fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+  peerEndpoint: peer0.org1.example.com:7051
+  gatewayPeer: peer0.org1.example.com
+  channelName: mychannel
+  chaincodeName: basic
